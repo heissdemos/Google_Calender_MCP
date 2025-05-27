@@ -36,7 +36,8 @@ async def run(mcp_server: MCPServer):
 
 async def main():
     async with MCPServerSse(
-        params={"url": "http://localhost:8000/sse"}
+        params={"url": "http://localhost:8000/sse"},
+        client_session_timeout_seconds=120
     ) as server:
         await run(server)
 
