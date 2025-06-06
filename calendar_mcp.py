@@ -29,13 +29,9 @@ def get_calendar_service():
                 creds.refresh(Request())
             except Exception:
                 os.remove(TOKEN_FILE)
-                flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
-                creds = flow.run_local_server(port=0)
+                raise Exception("Token expired and could not be refreshed. Please re-authenticate.")
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
-            creds = flow.run_local_server(port=0)
-        with open(TOKEN_FILE, 'w') as token:
-            token.write(creds.to_json())
+            raise Exception(f"No valid credentials found. Please run authentication outside container first. Place token.json in {TOKEN_FILE}")
     return build('calendar', 'v3', credentials=creds)
 
 # ----------------------------
@@ -265,4 +261,4 @@ def manage_calendar(action: str,
 # -----------------------------
 # Run this MCP server; the 'manage_calendar' tool can replace CLI logic.
 if __name__ == '__main__':
-    mcp.run(transport="sse")
+    mcp.run(transport="stdio")

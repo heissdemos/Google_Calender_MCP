@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  google-calendar-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: google-calendar-mcp
+    ports:
+      - "8001:8000"  # Expose on port 8001 to avoid conflicts
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TOKEN_FILE=/app/data/token.json
+    stdin_open: true
+    tty: true
+    restart: unless-stopped

@@ -8,17 +8,65 @@ wheels/
 
 # Virtual environments
 .venv
+venv/
+env/
 
+# Cache and temporary files
 .mypy_cache
+.pytest_cache
 
-cl.py
-
+# Environment and configuration files
 .env
-
+.env.local
+.env.production
+.env.development
 .environments
 
+# Google OAuth credentials and tokens (CRITICAL - NEVER COMMIT!)
 credentials.json
 token.json
+client_secret*.json
+oauth_credentials.json
 
+# Data directory with persistent tokens
+data/
+data/token.json
+data/*.json
+
+# Claude configuration (CONTAINS SENSITIVE PATHS)
+CLAUDE.md
+.claude-mcp.json
+claude-mcp.json
+.claude/
+
+# Temporary development files
+cl.py
 hello.py
+test_*.py
+temp_*
+
+# Docker volumes and build cache
+.docker/
+docker-compose.override.yml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+*.log
+
+# npm/node (if any frontend components added)
+node_modules/
+package-lock.json
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
 
